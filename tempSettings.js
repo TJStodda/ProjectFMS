@@ -39,7 +39,7 @@ function draw() {
   
 
   fill(220,220,220);
-  text('Back', 280, 370);
+  text('Back', 295, 363);
 }
 
 function setLineDash(list) {
