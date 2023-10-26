@@ -5,6 +5,10 @@
 
 
 
+//mousepressed() will always execute first call in draw function (currently activity 1) will need if statements detecting if mouse location is over the correct box for navigation to work properly
+
+//add mousepressed method to clean up code and make file length shorter
+
 var activityOneButton;
 var activityTwoButton;
 var activityThreeButton;
@@ -40,16 +44,18 @@ function setup() {
   settingsButton.position(15,30);
   settingsButton.size(120,50);
   
-}
-
-function draw() {
-  activityOneButton.mousePressed(window.open("https://editor.p5js.org/tjstodda/full/a5JBC5J6I"));
- activityTwoButton.mousePressed(window.open("activityTwo.html"));
-        activityThreeButton.mousePressed(window.open("activityThree.html"));
-    activityFourButton.mousePressed(window.open("activityFour.html"));
-settingsButton.mousePressed(window.open("settings.html")); 
+  
+ 
   
 }
 
-
-
+function draw() {
+    activityOneButton.mousePressed(window.open("https://editor.p5js.org/tjstodda/full/a5JBC5J6I"));
+ 
+ activityTwoButton.mousePressed(window.open("https://editor.p5js.org/tjstodda/full/LXztNdYAI"));
+  activityThreeButton.mousePressed(window.open("https://editor.p5js.org/tjstodda/full/gMhyv9UUd"));
+    activityFourButton.mousePressed(window.open("https://editor.p5js.org/tjstodda/full/gmKIF2re4"));
+  
+settingsButton.mousePressed(window.open("https://editor.p5js.org/tjstodda/full/AkuDdzqqo"));
+  
+}
