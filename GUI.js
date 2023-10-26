@@ -1,3 +1,5 @@
+//THIS FILE IS NOT PART OF MAIN CODE, PARTS HAVE BEEN ADDED TO GUI
+
 function setup() {
   createCanvas(600,400);
 }
