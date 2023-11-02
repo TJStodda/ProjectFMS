@@ -1,0 +1,127 @@
+console.clear();  
+//Axes of Player square
+  let xAxis = 20;
+  let yAxis = 20;
+
+  let acc = 0; //Acceleration of box (downwards)
+  
+  let randomSize = Math.random() * 50 + 50; //Size of box
+
+  let speed = 120/randomSize - 0.5; //Speed of box (sideways)
+  
+  let moveRight = true;
+  let drop = false;
+
+//Axes of Target Square  
+  let targetSize = Math.random() * 110 + 17;
+  let targetX = Math.random() * (355 - targetSize);
+
+
+
+
+function setup() {
+  createCanvas(400, 400);
+}
+
+function sideways() {
+  //Moves player block right
+  if(xAxis + speed < 375 - randomSize && moveRight) xAxis+= speed;
+  
+  //Changes direction to left
+  else if (xAxis + speed >= 375 - randomSize && moveRight) {
+    xAxis = 375 - randomSize;
+    moveRight = false;
+    speed *= 1;
+  }
+  
+  //Moves player block left
+  else if(xAxis + speed > 20 && !moveRight) {
+    xAxis-= speed;
+  }
+  
+  //Changes direction of left
+  else if (xAxis + speed <= 20 && !moveRight) {
+    xAxis = 20;
+    moveRight = true;
+    speed *= 1;
+  }  
+}
+
+function dropBlock() {
+  //Acceleration
+  if(acc == 0) acc = 1;
+  else acc+= 0.75;
+  
+  //Increase acceleration
+  if(yAxis + acc < 300 - randomSize) yAxis = acc + yAxis;
+  
+  //If 
+  else{
+    yAxis = 300  - randomSize;
+  }
+  
+}
+
+
+function draw() {
+  
+  background(220);
+  
+  let leftBox = xAxis;
+  let rightBox = xAxis + randomSize;
+  let leftTarget = 20 + targetX;
+  let rightTarget = 20 + targetX + targetSize;
+  
+  //Guidance lines
+  line(leftBox, 0, leftBox, 400);
+  line(rightBox, 0, rightBox, 400);
+  line(leftTarget, 0, leftTarget, 400);
+  line(rightTarget, 0, rightTarget, 300);
+  line(0, 300, 500, 300);
+
+  //Determines winning condition
+  let leftEnough = (rightBox >= leftTarget);
+  let rightEnough = (leftBox <= rightTarget);
+  
+  
+  square(xAxis, yAxis,randomSize); //Player box
+  rect(leftTarget, 300, targetSize, 100); //Target box
+  
+  if(mouseIsPressed) drop = true;
+  
+    if(!drop) { //Moves block sideways
+      sideways();
+      
+    }else { //Drops block
+      dropBlock();
+      
+      if(yAxis >= 300 - randomSize) { //Player block hits line
+         if(leftEnough && rightEnough) { //Winning condition
+           
+             //Text box and styling
+             fill(140,140,160);
+             rect(60, 22, 280, 70, 10);
+             fill(220, 220, 220);
+             textSize(40);
+             text('You won!!', 112, 71);
+         }
+           else { //Losing condition
+             
+             //Text box and styling
+             fill(140,140,160);
+             rect(60, 22, 280, 70, 10);
+             fill(220, 220, 220);
+             textSize(22);
+             text('You lost...', 148, 51);
+             textSize(19);
+             
+             if(leftEnough) text("It was too far right", 147, 77);
+             else text("It was too far left", 104, 77);
+             
+           }
+        
+      }
+      
+      
+    }
+}
