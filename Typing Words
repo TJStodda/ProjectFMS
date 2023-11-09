@@ -1,0 +1,45 @@
+const words = ["Four", "Tree", "Bang", "Cane","Food", "Cat", "Banana", "Three", "Mouse", "Rat"];
+const randomIndex = Math.floor(Math.random() * words.length);
+//console.log(randomIndex);
+let chosen = words[randomIndex];
+let corr = false;
+
+function setup() {
+
+  //console.log(words[randomIndex]);
+
+  let wordInput = createInput('');
+  wordInput.position(75, 125);
+  wordInput.size(250,100);
+  wordInput.input(myInputEvent);
+  wordInput.style('font-size', '32px');
+
+}
+function myInputEvent() {
+  // console.log('you are typing: ', this.value());
+  let word = this.value();
+
+  //let i = 0;
+  // for (let i = 0; i < word.length; i++) {
+  //while(i < word.length) {
+    //let letter = word.charAt(i);
+    //let match = chosen.charAt(i);
+    //if(!(letter == match)) corr = false;
+    //i++;
+
+  //console.log(corr);
+  if (word != chosen) {corr = false}
+  else {corr = true}
+
+
+
+}
+
+function draw() {
+  createCanvas(400,400);
+  background(140,140,160);
+  textSize(32);
+  text(chosen, 150, 60);
+  text(corr, 150, 300);
+
+}
