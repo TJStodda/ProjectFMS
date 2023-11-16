@@ -1,0 +1,53 @@
+let button;
+function setup() {
+  createCanvas(400, 400);
+  background(140,140,160);
+  fill('grey');
+  ellipse(200, 200, 100, 100);
+  fill('white');
+  ellipse(300, 300, 150, 150);
+  fill('black');
+  ellipse(100,100,50,50);
+  fill('blue');
+  ellipse(300,100,75,75);
+  
+
+}
+function draw() {
+
+  if (mouseIsPressed && isMouseInsideEllipse()) {
+    fill(140,140,160);
+    stroke(140,140,160);
+    strokeWeight(1);
+    ellipse(200, 200, 100, 100);
+  }
+}
+function isMouseInsideEllipse() {
+
+  let d = dist(mouseX, mouseY, 200, 200);
+  return d < 50;
+}
+
+function onButtonPress() {
+  fill('grey');
+  stroke('white');
+  ellipse(200, 200, 100, 100);
+}
+
+function onButtonPress2() {
+  fill('white');
+  stroke('white');
+  ellipse(200, 200, 100, 100);
+}
+
+function onButtonPress3() {
+  fill('black');
+  stroke('white');
+  ellipse(100,100,50,50);
+}
+
+function onButtonPress4() {
+  fill('blue');
+  stroke('white');
+  ellipse(300,100,75,75);
+}
