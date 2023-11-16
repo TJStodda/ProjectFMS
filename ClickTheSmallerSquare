@@ -1,0 +1,69 @@
+//vars for squares
+let a;
+let b;
+
+//squares' properties
+let intX = Math.random() * 200 + 30;
+let intY = Math.random() * 200 + 30;
+let aWidth = Math.random() * 70 + 60;
+
+let intX2 = Math.random() * 200 + 30;
+let intY2 = Math.random() * 200 + 30;
+let width2 = aWidth/(Math.random() * 1.4 + 1.4);
+
+//vars on status of game
+let lost = false;
+let numClicks = 0;
+
+function setup() {
+  createCanvas(400, 400);
+  frameRate(10);
+}
+
+
+function draw() {
+  background(220);
+  
+  
+  //determines whether mouse is in the smaller circle
+  let inSmallerX = (mouseX < width2 + intX2) && (mouseX > intX2);
+  let inSmallerY = (mouseY < width2 + intY2) && (mouseY > intY2);
+  //determines whether mouse is in the larger circle
+  let inBiggerX = (mouseX < aWidth + intX) && (mouseX > intX);
+  let inBiggerY = (mouseY < aWidth + intY) && (mouseY > intY);  
+  a = square(intX, intY, aWidth);
+  b = square(intX2, intY2, width2);
+  
+  if(!lost) {
+    textSize(20);
+    text("Score: " + numClicks, 140, 30);
+      if(!mouseIsPressed) { //default; spawns squares
+
+      } else { //if user clicks
+        if (inSmallerX && inSmallerY){ //if user clicks the smaller squares
+        
+          //jumbles properties of both squares
+          intX = Math.random() * 200 + 30;
+          intY = Math.random() * 200 + 30;
+          awidth = Math.random() * 50 + 50;
+
+          intX2 = Math.random() * 200 + 30;
+          intY2 = Math.random() * 200 + 30;
+          width2 = aWidth/(Math.random() * 2 + 1.3);
+          a = square(intX, intY, aWidth);
+          b = square(intX2, intY2, width2);
+
+          numClicks++;
+          console.log(numClicks);
+      
+        } else if(inBiggerX &&inBiggerY){ //if user clicks larger square
+          lost = true;
+          console.log("you just lost");
+        }
+      }
+  } else {
+        textSize(30);
+    text("You lost!", 140, 100);
+
+  }
+}
