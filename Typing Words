@@ -1,33 +1,64 @@
 const words = ["Four", "Tree", "Bang", "Cane","Food", "Cat", "Banana", "Three", "Mouse", "Rat"];
-const randomIndex = Math.floor(Math.random() * words.length);
-//console.log(randomIndex);
-let chosen = words[randomIndex];
-let corr = false;
+var randomIndex = Math.floor(Math.random() * words.length);
+
+var chosen = words[randomIndex];
+var corr = false;
+var backButton;
+var continueButton;
+var score=0; //shows current level(number of correct words)
+var scoreDisplay="Current Score: " + score;
+var displayResult = "";
+var displayResultBool = false;
+var resultCounter=0; // used to display result for x time
+
+function buttonFunc() {
+  window.open("https://editor.p5js.org/tjstodda/full/92J081UKo" );
+}
+
+function nextLevel() { //choose new random word and start game again 
+  
+    score++;
+    randomIndex = Math.floor(Math.random() * words.length);
+    chosen = words[randomIndex];
+
+}
+
+function checkAnswer()  { //check if answer is right and call nextLevel when result expires
+    displayResultBool = true;
+    if (corr) {
+      
+      scoreDisplay = "Current Score: " + score;
+      displayResult = "Correct! Good Job!";
+    }
+  else {
+    displayResult = "That's not correct, try again!";
+  }
+}
 
 function setup() {
 
-  //console.log(words[randomIndex]);
+    backButton = createButton("back");
+  backButton.position(320,350);
+  backButton.mousePressed(buttonFunc);
+ 
+  continueButton = createButton("Enter Answer");
+  continueButton.position(120,350);
+  continueButton.mousePressed(checkAnswer);
+ 
 
   let wordInput = createInput('');
-  wordInput.position(75, 125);
+  wordInput.position(150, 125);
   wordInput.size(250,100);
   wordInput.input(myInputEvent);
   wordInput.style('font-size', '32px');
+   
 
 }
 function myInputEvent() {
-  // console.log('you are typing: ', this.value());
+  
   let word = this.value();
 
-  //let i = 0;
-  // for (let i = 0; i < word.length; i++) {
-  //while(i < word.length) {
-    //let letter = word.charAt(i);
-    //let match = chosen.charAt(i);
-    //if(!(letter == match)) corr = false;
-    //i++;
-
-  //console.log(corr);
+  
   if (word != chosen) {corr = false}
   else {corr = true}
 
@@ -36,10 +67,27 @@ function myInputEvent() {
 }
 
 function draw() {
-  createCanvas(400,400);
+  createCanvas(600,400);
   background(140,140,160);
-  textSize(32);
-  text(chosen, 150, 60);
-  text(corr, 150, 300);
-
+  textSize(50);
+  text(chosen, 200, 100);
+ 
+  if (displayResultBool){
+     textSize(30);
+   text(displayResult,100,300);
+    resultCounter++;
+  }
+  textSize(20);
+  text(scoreDisplay,420,25);
+  
+  if (resultCounter>120) {
+      resultCounter = 0;
+      if (displayResultBool) {
+        displayResultBool = false;
+        //nextLevel(); uncomment this line if we want a new word to appear when a wrong answer is given
+      }
+    if (corr) nextLevel();
+        
+      }
 }
+
