@@ -3,6 +3,8 @@ console.clear();
 let xAxis = 20;
 let yAxis = 20;
 var backButton;
+var rulesButton;
+var rulesBool=true;
 
 let acc = 0; //Acceleration of box (downwards)
 
@@ -23,6 +25,10 @@ let cumulativeSpeed = 0;
 function buttonFunc() {
   window.open("https://editor.p5js.org/tjstodda/full/92J081UKo" );
 }
+function removeRules() {
+  rulesButton.hide();
+  rulesBool=false;
+}
 
 //make a method for playing game
 
@@ -32,6 +38,9 @@ function setup() {
   backButton.position(300,350);
    backButton.mousePressed(buttonFunc);
   backButton.hide();
+  rulesButton = createButton("Begin Game");
+  rulesButton.position(150,300);
+  rulesButton.mousePressed(removeRules);
 }
 
 function sideways() {
@@ -98,7 +107,12 @@ function makeReset(incrSpeed) {
 
 function draw() {
   background(220);
-
+  if (rulesBool){
+    textSize(32);
+    text("Drop the block between ",50,100);
+    text("the solid lines to win.",50,150);
+  }
+  else {
   let leftBox = xAxis;
   let rightBox = xAxis + randomSize;
   let leftTarget = 20 + targetX;
@@ -165,4 +179,5 @@ function draw() {
     }
   }
   frameAt++;
+}
 }
