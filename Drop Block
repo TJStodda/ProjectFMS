@@ -125,8 +125,9 @@ function draw() {
         fill(140, 140, 160);
         rect(60, 22, 280, 70, 10);
         fill(220, 220, 220);
-        textSize(40);
-        text("You won!!", 112, 71);
+        text("You won!!", 130, 60);
+        textSize(20);
+        text("Click anywhere to play again", 70, 82);
         if (mouseIsPressed) {
           makeReset(0.07);
           frameAt = 0;
