@@ -13,51 +13,46 @@ function setup() {
   rect(180, 100, 240, 50,10,10,10,10)
   textSize(32);
   text("Main Menu",215,135);
-   activityOneButton =  createButton("activity 1");
+   activityOneButton =  createButton("Drop Block");
   activityOneButton.position(15,300);
   activityOneButton.size(120,50);
    activityOneButton.mousePressed(openActivityOne);
    
-  activityTwoButton =  createButton("activity 2");
+  activityTwoButton =  createButton("typing words");
   activityTwoButton.position(165,300);
   activityTwoButton.size(120,50);
   activityTwoButton.mousePressed(openActivityTwo);
   
-  activityThreeButton =  createButton("activity 3");
+  activityThreeButton =  createButton("smallest circle");
   activityThreeButton.position(315,300);
   activityThreeButton.size(120,50);
    activityThreeButton.mousePressed(openActivityThree);
   
-  activityFourButton =  createButton("activity 4");
+  activityFourButton =  createButton("smaller square");
   activityFourButton.position(465,300);
   activityFourButton.size(120,50);
   activityFourButton.mousePressed(openActivityFour);
   
-   settingsButton =  createButton("settings");
-  settingsButton.position(15,30);
-  settingsButton.size(120,50);
-  settingsButton.mousePressed(openSettings);
+  
 }
 
-function openActivityOne() {
-  window.open("https://editor.p5js.org/tjstodda/full/a5JBC5J6I");
+function openActivityOne() { //Drop Block
+  window.open("https://editor.p5js.org/tjstodda/full/SSmmUi7er");
 }
 
-function openActivityTwo() {
-  window.open("https://editor.p5js.org/tjstodda/full/LXztNdYAI");
+function openActivityTwo() { //typing words
+  window.open("https://editor.p5js.org/tjstodda/full/3ITSEoq47");
 }
 
-function openActivityThree() {
+function openActivityThree() {//smallest circle
   window.open("https://editor.p5js.org/tjstodda/full/gMhyv9UUd");
 }
 
-function openActivityFour() {
-  window.open("https://editor.p5js.org/tjstodda/full/gmKIF2re4");
+function openActivityFour() {//smaller square
+  window.open("https://editor.p5js.org/tjstodda/full/rE0iRq4B1");
 }
 
-function openSettings() {
-  window.open("https://editor.p5js.org/tjstodda/full/AkuDdzqqo");
-}
+
 
 function draw() {
    
