@@ -1,6 +1,19 @@
-const words = ["Four", "Tree", "Bang", "Cane","Food", "Cat", "Banana", "Three", "Mouse", "Rat"];
+const words = ["Sun", "River", "Jump", "Car", "Book", "Run", "Dog", "Apple", "Train", "Laugh",
+ "Chair", "Speak", "Ocean", "Sleep", "Eat", "Mountain", "Dance", "Key", "Sing", "Robot",
+ "Ball", "Think", "Fish", "Climb", "Bird", "Write", "Moon", "Drive", "Smile", "Cloud",
+ "Door", "Listen", "Star", "Build", "Friend", "Paint", "Tree", "Read", "Hug", "Fire",
+ "Watch", "Swim", "Mouse", "Fly", "Love", "Game", "Ship", "Cry", "Runway", "Code",
+ "Guitar", "Scream", "Rock", "Camera", "Talk", "Pizza", "Jump", "Ski", "Create", "Walk",
+ "Coffee", "Explore", "Wave", "Bike", "Hop", "Solve", "Cheese", "Hopscotch", "Dream", "Discover",
+ "Hike", "Navigate", "Whisper", "Race", "Plant", "Study", "Play", "Sail", "Design", "Adventure",
+ "Capture", "Sing", "Cook", "Draw", "Build", "Travel", "Juggle", "Hide", "Row", "Explore",
+ "Surf", "Compose", "Discover", "Compose", "Knit", "Act", "Dive", "Invent", "Discover", "Craft",
+ "Collect", "Compose", "Learn", "Discover", "Challenge", "Sculpt", "Uncover", "Imagine", "Found", "Craft",
+ "Map", "Construct", "Observe", "Appreciate", "Innovate", "Navigate", "Visualize", "Spark", "Solve", "Navigate",
+ "Appreciate", "Discover", "Compose", "Learn", "Design", "Create", "Invent", "Discover", "Explore", "Imagine",
+ "Construct", "Sculpt", "Build", "Challenge", "Innovate", "Map", "Craft", "Found", "Uncover", "Collect"];
 var randomIndex = Math.floor(Math.random() * words.length);
-
+var wordInput;
 var chosen = words[randomIndex];
 var corr = false;
 var backButton;
@@ -10,13 +23,22 @@ var scoreDisplay="Current Score: " + score;
 var displayResult = "";
 var displayResultBool = false;
 var resultCounter=0; // used to display result for x time
+var rulesBool=true;
+var rulesButton;
 
 function buttonFunc() {
   window.open("https://editor.p5js.org/tjstodda/full/92J081UKo" );
 }
+function removeRules(){
+  rulesBool=false;
+  rulesButton.hide();
+  wordInput.show();
+  backButton.show();
+  continueButton.show();
+}
 
 function nextLevel() { //choose new random word and start game again 
-  
+   
     score++;
     randomIndex = Math.floor(Math.random() * words.length);
     chosen = words[randomIndex];
@@ -40,17 +62,23 @@ function setup() {
     backButton = createButton("back");
   backButton.position(320,350);
   backButton.mousePressed(buttonFunc);
+  backButton.hide();
  
   continueButton = createButton("Enter Answer");
   continueButton.position(120,350);
   continueButton.mousePressed(checkAnswer);
- 
+  continueButton.hide();
+  
+  rulesButton = createButton("Begin Game");
+   rulesButton.position(250,300);
+  rulesButton.mousePressed(removeRules);
 
-  let wordInput = createInput('');
+   wordInput = createInput('');
   wordInput.position(150, 125);
   wordInput.size(250,100);
   wordInput.input(myInputEvent);
   wordInput.style('font-size', '32px');
+  wordInput.hide();
    
 
 }
@@ -69,6 +97,12 @@ function myInputEvent() {
 function draw() {
   createCanvas(600,400);
   background(140,140,160);
+  if(rulesBool) {
+     textSize(32);
+    text("Spell the displayed word ",100,150);
+    text("correctly to earn points.",100,200);
+     }
+  else {
   textSize(50);
   text(chosen, 200, 100);
  
@@ -84,10 +118,10 @@ function draw() {
       resultCounter = 0;
       if (displayResultBool) {
         displayResultBool = false;
-        //nextLevel(); uncomment this line if we want a new word to appear when a wrong answer is given
+        nextLevel(); 
       }
-    if (corr) nextLevel();
+    //if (corr) nextLevel(); //uncomment if we want to allow reattempting the same word
         
       }
 }
-
+}
