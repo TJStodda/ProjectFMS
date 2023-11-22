@@ -1,6 +1,10 @@
 //vars for squares
 let a;
 let b;
+var backButton;
+var retryButton;
+var rulesBool=true; //boolean to display rules @ beginning of game
+var rulesButton;
 
 //squares' properties
 let intX = Math.random() * 200 + 30;
@@ -12,19 +16,56 @@ let intY2 = Math.random() * 200 + 30;
 let width2 = aWidth/(Math.random() * 1.4 + 1.4);
 
 //vars on status of game
-let lost = false;
-let numClicks = 0;
+var lost = false;
+var numClicks = 0;
+
+function buttonFunc() {
+  window.open("https://editor.p5js.org/tjstodda/full/92J081UKo" );
+}
+function removeRules() {
+  rulesButton.hide();
+  rulesBool = false;
+}
+function tryAgain() {
+  lost = false;
+  retryButton.hide();
+  numClicks=0;
+  //jumbles properties of both squares
+          intX = Math.random() * 200 + 30;
+          intY = Math.random() * 200 + 30;
+          awidth = Math.random() * 50 + 50;
+
+          intX2 = Math.random() * 200 + 30;
+          intY2 = Math.random() * 200 + 30;
+          width2 = aWidth/(Math.random() * 2 + 1.3);
+          a = square(intX, intY, aWidth);
+          b = square(intX2, intY2, width2);
+}
 
 function setup() {
   createCanvas(400, 400);
   frameRate(10);
+   backButton = createButton("back");
+  backButton.position(325,365);
+  backButton.mousePressed(buttonFunc);
+  retryButton = createButton("Try again");
+  retryButton.position(50,365);
+  retryButton.mousePressed(tryAgain);
+  retryButton.hide();
+  rulesButton = createButton("Begin Game");
+  rulesButton.position(150,250);
+  rulesButton.mousePressed(removeRules);
 }
 
 
 function draw() {
   background(220);
-  
-  
+  if (rulesBool) {
+      textSize(32);
+    text("Click on the smallest ",50,100);
+    text("square to earn points",50,150);
+  }
+  else {
   //determines whether mouse is in the smaller circle
   let inSmallerX = (mouseX < width2 + intX2) && (mouseX > intX2);
   let inSmallerY = (mouseY < width2 + intY2) && (mouseY > intY2);
@@ -64,6 +105,8 @@ function draw() {
   } else {
         textSize(30);
     text("You lost!", 140, 100);
-
+    retryButton.show();
   }
+  }
+    
 }
