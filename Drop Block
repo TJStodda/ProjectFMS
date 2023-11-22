@@ -67,13 +67,14 @@ function makeReset(incrSpeed) {
 
   cumulativeSpeed += incrSpeed;
 
-  if (incrSpeed < -1) incrSpeed = -1;
-  if (incrSpeed > 3) incrSpeed = 3;
+  if (cumulativeSpeed < -0.6) cumulativeSpeed = -0.6;
+  if (cumulativeSpeed > 20) cumulativeSpeed = 20;
 
+  console.log(cumulativeSpeed);
   acc = 0;
 
   randomSize = Math.random() * 50 + 50;
-  speed = 120 / randomSize - 0.5 + incrSpeed;
+  speed = 120 / randomSize - 0.5 + cumulativeSpeed;
 
   moveRight = true;
   drop = false;
@@ -127,7 +128,7 @@ function draw() {
         textSize(40);
         text("You won!!", 112, 71);
         if (mouseIsPressed) {
-          makeReset(1.15);
+          makeReset(0.07);
           frameAt = 0;
         }
       } else {
@@ -145,7 +146,7 @@ function draw() {
         else text("It was too far left", 104, 77);
 
         if (mouseIsPressed) {
-          makeReset(-0.075);
+          makeReset(-0.1);
           frameAt = 0;
         }
       }
