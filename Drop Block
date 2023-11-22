@@ -2,6 +2,7 @@ console.clear();
 //Axes of Player square
 let xAxis = 20;
 let yAxis = 20;
+var backButton;
 
 let acc = 0; //Acceleration of box (downwards)
 
@@ -19,10 +20,18 @@ let targetX = Math.random() * (355 - targetSize);
 let frameAt = 999;
 let cumulativeSpeed = 0;
 
+function buttonFunc() {
+  window.open("https://editor.p5js.org/tjstodda/full/92J081UKo" );
+}
+
 //make a method for playing game
 
 function setup() {
   createCanvas(400, 400);
+  backButton = createButton("Back");
+  backButton.position(300,350);
+   backButton.mousePressed(buttonFunc);
+  backButton.hide();
 }
 
 function sideways() {
@@ -65,6 +74,7 @@ function makeReset(incrSpeed) {
   xAxis = 20;
   yAxis = 20;
 
+  backButton.hide();
   cumulativeSpeed += incrSpeed;
 
   if (cumulativeSpeed < -0.6) cumulativeSpeed = -0.6;
@@ -128,6 +138,7 @@ function draw() {
         text("You won!!", 130, 60);
         textSize(20);
         text("Click anywhere to play again", 70, 82);
+        backButton.show();
         if (mouseIsPressed) {
           makeReset(0.07);
           frameAt = 0;
@@ -142,10 +153,10 @@ function draw() {
         textSize(22);
         text("You lost...", 148, 51);
         textSize(19);
-
+        
         if (leftEnough) text("It was too far right", 147, 77);
         else text("It was too far left", 104, 77);
-
+        backButton.show();
         if (mouseIsPressed) {
           makeReset(-0.1);
           frameAt = 0;
