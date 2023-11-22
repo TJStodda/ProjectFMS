@@ -18,17 +18,17 @@ function setup() {
   activityOneButton.size(120,50);
    activityOneButton.mousePressed(openActivityOne);
    
-  activityTwoButton =  createButton("typing words");
+  activityTwoButton =  createButton("Typing Words");
   activityTwoButton.position(165,300);
   activityTwoButton.size(120,50);
   activityTwoButton.mousePressed(openActivityTwo);
   
-  activityThreeButton =  createButton("smallest circle");
+  activityThreeButton =  createButton("Smallest Circle");
   activityThreeButton.position(315,300);
   activityThreeButton.size(120,50);
    activityThreeButton.mousePressed(openActivityThree);
   
-  activityFourButton =  createButton("smaller square");
+  activityFourButton =  createButton("Smaller Square");
   activityFourButton.position(465,300);
   activityFourButton.size(120,50);
   activityFourButton.mousePressed(openActivityFour);
