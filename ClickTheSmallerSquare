@@ -5,6 +5,7 @@ var backButton;
 var retryButton;
 var rulesBool=true; //boolean to display rules @ beginning of game
 var rulesButton;
+var timer=0;
 
 //squares' properties
 let intX = Math.random() * 200 + 30;
@@ -30,6 +31,7 @@ function tryAgain() {
   lost = false;
   retryButton.hide();
   numClicks=0;
+  timer=0;
   //jumbles properties of both squares
           intX = Math.random() * 200 + 30;
           intY = Math.random() * 200 + 30;
@@ -44,7 +46,7 @@ function tryAgain() {
 
 function setup() {
   createCanvas(400, 400);
-  frameRate(10);
+  
    backButton = createButton("back");
   backButton.position(325,365);
   backButton.mousePressed(buttonFunc);
@@ -65,7 +67,7 @@ function draw() {
     text("Click on the smallest ",50,100);
     text("square to earn points",50,150);
   }
-  else {
+  else if(timer<3601) {
   //determines whether mouse is in the smaller circle
   let inSmallerX = (mouseX < width2 + intX2) && (mouseX > intX2);
   let inSmallerY = (mouseY < width2 + intY2) && (mouseY > intY2);
@@ -107,6 +109,11 @@ function draw() {
     text("You lost!", 140, 100);
     retryButton.show();
   }
+    text("Timer: "+(timer/60),50,50);
+    timer++;
+  }
+  else {
+    text("Game Over",200,200);
   }
     
 }
