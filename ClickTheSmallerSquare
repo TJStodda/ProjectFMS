@@ -46,7 +46,7 @@ function tryAgain() {
 
 function setup() {
   createCanvas(400, 400);
-  
+  frameRate(10);
    backButton = createButton("back");
   backButton.position(325,365);
   backButton.mousePressed(buttonFunc);
@@ -67,7 +67,7 @@ function draw() {
     text("Click on the smallest ",50,100);
     text("square to earn points",50,150);
   }
-  else if(timer<3601) {
+  else if(timer<601) {
   //determines whether mouse is in the smaller circle
   let inSmallerX = (mouseX < width2 + intX2) && (mouseX > intX2);
   let inSmallerY = (mouseY < width2 + intY2) && (mouseY > intY2);
@@ -109,7 +109,8 @@ function draw() {
     text("You lost!", 140, 100);
     retryButton.show();
   }
-    text("Timer: "+(timer/60),50,50);
+    textSize(20);
+    text("Timer: "+(timer/10),250,20);
     timer++;
   }
   else {
