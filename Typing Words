@@ -25,6 +25,7 @@ var displayResultBool = false;
 var resultCounter=0; // used to display result for x time
 var rulesBool=true;
 var rulesButton;
+var word; //used to save answers
 
 function buttonFunc() {
   window.open("https://editor.p5js.org/tjstodda/full/92J081UKo" );
@@ -39,13 +40,21 @@ function removeRules(){
 
 function nextLevel() { //choose new random word and start game again 
    
-    score++;
+    
     randomIndex = Math.floor(Math.random() * words.length);
     chosen = words[randomIndex];
 
 }
 
 function checkAnswer()  { //check if answer is right and call nextLevel when result expires
+  
+   if (word != chosen) {corr = false}
+  else {
+    corr = true
+    score++;      
+  }
+  
+  console.log(score);
     displayResultBool = true;
     if (corr) {
       
@@ -55,6 +64,8 @@ function checkAnswer()  { //check if answer is right and call nextLevel when res
   else {
     displayResult = "That's not correct, try again!";
   }
+  wordInput.value("");
+  nextLevel();
 }
 
 function setup() {
@@ -84,12 +95,10 @@ function setup() {
 }
 function myInputEvent() {
   
-  let word = this.value();
-
+   word = wordInput.value();
   
-  if (word != chosen) {corr = false}
-  else {corr = true}
-
+  
+ 
 
 
 }
@@ -105,22 +114,23 @@ function draw() {
   else {
   textSize(50);
   text(chosen, 200, 100);
+     textSize(20);
+  text(scoreDisplay,420,25);
  
   if (displayResultBool){
      textSize(30);
    text(displayResult,100,300);
     resultCounter++;
   }
-  textSize(20);
-  text(scoreDisplay,420,25);
+ 
   
   if (resultCounter>120) {
       resultCounter = 0;
       if (displayResultBool) {
         displayResultBool = false;
-        nextLevel(); 
+        
       }
-    //if (corr) nextLevel(); //uncomment if we want to allow reattempting the same word
+    
         
       }
 }
